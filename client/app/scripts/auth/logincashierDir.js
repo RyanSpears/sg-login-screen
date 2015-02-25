@@ -6,18 +6,20 @@ app.directive('cashierLogin', function (userservice) {
     return {
         templateUrl: '/client/app/scripts/auth/logincashier.html',
         restrict: 'E',
-        transclude: true,
-        replace: true,
-        scope: true,
+        scope: {
+            user: '=',
+            initialCollapsed: '@collapsed'
+        },
         controllerAs: 'vm',
         bindToController: true,
         controller: function () {
-            this.showModel = showModal;
-            this.title = 'Awesome title';
+            console.log('In cashierLogin directive');
 
-            function showModal() {
-                return true;
+            if(this.user === null) {
+                this.user.name = 'No name';
             }
+
+            this.title = 'Some title'
         }
     };
 });
