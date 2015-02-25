@@ -6,11 +6,11 @@
     <link href="/client/app/styles/bootstrap.css.map" rel="stylesheet" />
     <link href="/client/app/styles/main.css" rel="stylesheet" />
 
-    <script src="/client/app/scripts/jquery.js"></script>
-    <script src="/client/app/scripts/angular.js"></script>
-    <script src="/client/app/scripts/angular-ui-router.js"></script>
-    <script src="/client/app/scripts/underscore.js"></script>
-    <script src="/client/app/scripts/bootstrap.js"></script>
+    <script src="/client/app/scripts/lib/jquery.js"></script>
+    <script src="/client/app/scripts/lib/angular.js"></script>
+    <script src="/client/app/scripts/lib/angular-ui-router.js"></script>
+    <script src="/client/app/scripts/lib/underscore.js"></script>
+    <script src="/client/app/scripts/lib/bootstrap.js"></script>
 
     <script src="/client/data.js"></script>
     <script src="/client/app/app.js"></script>
@@ -21,9 +21,18 @@
     <div ng-include="'/client/app/views/header.html'"></div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md2 sidebar">
-                <ul>
-                    <li><a href="#">Menu Item</a></li>
+            <div class="col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li><a href="#">Dashboard</a></li>
+                </ul>
+                 <ul class="nav nav-sidebar">
+                    <li><a href="#">Hotels</a></li>
+                </ul>
+                 <ul class="nav nav-sidebar">
+                    <li><a href="#">Alerts</a></li>
+                </ul>
+                 <ul class="nav nav-sidebar">
+                    <li><a href="#">Admin</a></li>
                 </ul>
             </div>
             <div class="col-md-10 col-md-offset-2 main">
