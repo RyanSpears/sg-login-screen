@@ -3,6 +3,7 @@
 
 <head>
     <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="/client/app/styles/main.css" rel="stylesheet" />
 
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
@@ -16,9 +17,18 @@
 </head>
 
 <body ng-app="app">
-        <div ng-include="'header.html'"></div>
-    <div class="container">
-        <div ui-view=""></div>
+    <div ng-include="'/client/app/header.html'"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md2 sidebar">
+                <ul>
+                    <li><a href="#">Menu Item</a></li>
+                </ul>
+            </div>
+            <div class="col-md-10 col-md-offset-2 main">
+                <div ui-view=""></div>
+            </div>
+        </div>
     </div>
 </body>
 
