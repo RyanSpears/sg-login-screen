@@ -12,7 +12,8 @@
 
         var vm = this;
 
-        vm.getUser = getUser;
+        vm.user = getUser();
+        vm.loggedIn = userLoggedIn();
 
         activate();
 
@@ -22,7 +23,11 @@
 
         function getUser() {
             console.log('security.getUser ' + userservice.getUser());
-            return userservice.getUser();
+           return userservice.getUser();
+        }
+
+        function userLoggedIn() {
+            return getUser() !== null;
         }
 
         return vm;

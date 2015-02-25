@@ -7,19 +7,21 @@ app.directive('cashierLogin', function (userservice) {
         templateUrl: '/client/app/scripts/auth/logincashier.html',
         restrict: 'E',
         scope: {
-            user: '=',
             initialCollapsed: '@collapsed'
         },
-        controllerAs: 'vm',
-        bindToController: true,
-        controller: function () {
-            console.log('In cashierLogin directive');
+        //        controllerAs: 'vm',
+        //        bindToController: true,
+        controller: function ($scope, userservice) {
+            $scope.title = 'Some title'
+            $scope.loggedIn = true;
 
-            if(this.user === null) {
-                this.user.name = 'No name';
+            $scope.user = userservice.getUser();
+
+            if ($scope.user == null) {
+                $scope.user = new User('Not logged in');;
             }
 
-            this.title = 'Some title'
+            console.log($scope.user.userName);
         }
     };
 });
