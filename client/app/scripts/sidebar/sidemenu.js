@@ -10,15 +10,19 @@
 
     function sidemenu($scope, $window, userservice) {
 
-        var vm = {
+        var vm = this;
 
-        };
+        vm.isCashier = isCashier;
 
         activate();
 
         function activate() {
-            vm.user = $window.user || userservice.getUser();
-            console.log(vm.user);
+            console.log('sidemenu');
+        }
+
+        function isCashier() {
+            console.log('sidemenu.userIsCashier' + userservice.isCashier());
+            return userservice.isCashier();
         }
 
         return vm;

@@ -1,5 +1,6 @@
 <div class="row" ng-controller="sidemenu as vm">
-    <div class="col-md-2 sidebar">
+    <!--   Help Desk-->
+    <div class="col-md-2 sidebar" ng-show="vm.isHelpDesk">
         <ul class="nav nav-sidebar">
             <li><a href="#">Dashboard</a>
             </li>
@@ -14,6 +15,33 @@
         </ul>
         <ul class="nav nav-sidebar">
             <li><a href="#">Admin</a>
+            </li>
+        </ul>
+    </div>
+    <!-- Cahier -->
+    <div class="col-md-2 sidebar" ng-show="vm.isCashier()">
+        <ul class="nav nav-sidebar">
+            <li><a href="#">Dashboard</a>
+            </li>
+        </ul>
+        <ul class="nav nav-sidebar">
+            <li><a href="#">Redeem</a>
+            </li>
+        </ul>
+        <ul class="nav nav-sidebar">
+            <li><a href="#">Customer Admin</a>
+            </li>
+        </ul>
+        <ul class="nav nav-sidebar">
+            <li><a href="#">Locking Cards</a>
+            </li>
+        </ul>
+        <ul class="nav nav-sidebar">
+            <li><a href="#">Card Traces</a>
+            </li>
+        </ul>
+        <ul class="nav nav-sidebar">
+            <li><a href="#">Participating Venues</a>
             </li>
         </ul>
     </div>
