@@ -17,7 +17,7 @@ app.config(["$stateProvider",
             $stateProvider
                 .state("home", {
                     url: "/",
-                    templateUrl: "dashboard.html"
+                    templateUrl: "/client/app/views/dashboard.html"
                 });
     }
 ])
