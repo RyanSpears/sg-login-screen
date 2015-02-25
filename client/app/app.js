@@ -12,30 +12,35 @@ app.config(["$stateProvider",
     "$urlRouterProvider",
     function ($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise("/");
+            $urlRouterProvider.otherwise("/");
 
             $stateProvider
                 .state("home", {
                     url: "/",
-                    templateUrl: "/client/app/views/dashboard.html"
+                    templateUrl: "/client/app/views/dashboard.html",
+                    controller: 'dashboard as vm'
                 });
     }
 ])
-.run(['$state',
+    .run(['$state',
     function ($state) {
-        $state.transitionTo('home');
+            $state.transitionTo('home');
     }
 ])
 
-app.factory('userservice', ['$scope', '$window'], function ($scope, $window) {
+app.controller('dashboard', function ($scope) {
+    console.log('dashboard');
+})
+
+app.factory('userservice', function () {
 
     console.log('userservice');
 
-    var service = {
-        authenticate: authenticate
-    };
+    var user = null;
 
-    return service;
+    function getUser() {
+        return user;
+    };
 
     function authenticate(email, password) {
         var user = _.findWhere(data.users, function (user) {
@@ -43,5 +48,10 @@ app.factory('userservice', ['$scope', '$window'], function ($scope, $window) {
         })
 
         return user;
+    };
+
+    return  {
+        getUser: getUser,
+        authenticate: authenticate
     }
 })

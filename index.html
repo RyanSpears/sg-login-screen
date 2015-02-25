@@ -14,30 +14,16 @@
 
     <script src="/client/data.js"></script>
     <script src="/client/app/app.js"></script>
+    <script src="/client/app/scripts/sidebar/sidemenu.js"></script>
     <script src="/client/models/User.js"></script>
 </head>
 
 <body ng-app="app">
     <div ng-include="'/client/app/views/header.html'"></div>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2 sidebar">
-                <ul class="nav nav-sidebar">
-                    <li><a href="#">Dashboard</a></li>
-                </ul>
-                 <ul class="nav nav-sidebar">
-                    <li><a href="#">Hotels</a></li>
-                </ul>
-                 <ul class="nav nav-sidebar">
-                    <li><a href="#">Alerts</a></li>
-                </ul>
-                 <ul class="nav nav-sidebar">
-                    <li><a href="#">Admin</a></li>
-                </ul>
-            </div>
-            <div class="col-md-10 col-md-offset-2 main">
-                <div ui-view=""></div>
-            </div>
+        <div ng-include="'/client/app/scripts/sidebar/sidemenu.html'"></div>
+        <div class="col-md-10 col-md-offset-2 main">
+            <div ui-view=""></div>
         </div>
     </div>
 </body>
