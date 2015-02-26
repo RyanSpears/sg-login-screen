@@ -28,6 +28,12 @@
             });
         });
 
+         $scope.$watch('userservice.cashier', function (newVal, oldVal, scope) {
+             if (newVal) {
+                 console.log('userservice.isCashier new value for isCashier is' + newVal);
+             }
+         });
+
         return vm;
     }
 

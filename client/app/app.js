@@ -102,8 +102,15 @@ app.controller('footer', function ($scope, $state, $stateParams, userservice) {
     vm.cashier = cashier;
 
     function cashier(val) {
-
         userservice.setCashierFromUrl(val);
+
+        if (val) {
+            $state.transitionTo('cashier', {
+                title: 'Dashboard'
+            });
+        } else {
+            $state.transitionTo('dashboard');
+        }
     }
 
     function isCashier() {
