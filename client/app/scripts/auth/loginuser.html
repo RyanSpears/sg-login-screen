@@ -1,0 +1,16 @@
+<div class="panel panel-primary panel-modal">
+    <h2>Please Login to access this information</h2>
+    {{ vm.user.userName || json }}
+    <pre>{{ user.userName }}</pre>
+     <form role="form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" ng-model="vm.email" placeholder="Enter email..." />
+      </div>
+      <div class="form-group">
+        <label for="password">Passcode</label>
+        <input type="password" class="form-control" id="password" ng-model="vm.password" placeholder="Enter password.." />
+      </div>
+      <button type="submit" class="btn btn-default" ng-click="vm.authenticate()">OK</button>
+    </form>
+</div>

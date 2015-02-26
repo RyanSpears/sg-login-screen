@@ -32,6 +32,8 @@
         var user = null;
         var loggedIn = false;
         var cashierAuthenticated = false;
+        var userAuthenticated = false;
+        var userAuthenticatedOnce = false;
         var authenticatedState = '';
         var stateAuthorisedForCashier = stateAuthorisedForCashier;
         var cashierAllowedStates = ['Dashboard', 'Participating Venues'];
@@ -41,6 +43,7 @@
         function getUser() {
             return user;
         };
+
 
         function isCashier() {
             return user === null && !loggedIn && cashierUserSetFromUrl;
@@ -64,6 +67,19 @@
             return user || null;
         };
 
+        function authenticateUser(email, password) {
+            var user = _.findWhere(users, {
+                email: email,
+                password: password
+            });
+
+            if(user !== null) {
+                userAuthenticatedOnce = true;
+            }
+
+            return user || null;
+        };
+
         function openCashierLogin() {
             var deferred = $q.defer();
 
@@ -82,10 +98,34 @@
                 console.log('Modal submitted at ' + new Date() + ' with a value of ' + cashierAuthenticated);
                 deferred.resolve(cashierAuthenticated);
             }, function () {
-                deferred.reject('Error getting authentication!');
+                deferred.reject(cashierAuthenticated);
             });
 
             return deferred.promise;
+        };
+
+        function openUserLogin() {
+            var promise = $q(function (resolve, reject) {
+                var modalInstance = $modal.open({
+                    templateUrl: '/client/app/scripts/auth/loginuser.html',
+                    controllerAs: 'vm',
+                    controller: 'loginuser',
+                    resolve: {
+                        userAuthenticated: function () {
+                            return userAuthenticated;
+                        }
+                    },
+                    backdrop: 'static'
+                }).result.then(function (authenticated) {
+                    userAuthenticated = authenticated;
+                    console.log('Modal submitted at ' + new Date() + ' with a value of ' + userAuthenticated);
+                    resolve(userAuthenticated);
+                }, function () {
+                    reject(userAuthenticated);
+                });
+            });
+
+            return promise;
         };
 
         function stateAuthorisedForCashier(state) {
@@ -98,9 +138,13 @@
             isCashier: isCashier,
             openCashierLogin: openCashierLogin,
             cashierAuthenticated: cashierAuthenticated,
+            openUserLogin: openUserLogin,
+            userAuthenticated: userAuthenticated,
             authenticatedState: authenticatedState,
             stateAuthorisedForCashier: stateAuthorisedForCashier,
-            setCashierFromUrl: setCashierFromUrl
+            setCashierFromUrl: setCashierFromUrl,
+            authenticateUser: authenticateUser,
+            userAuthenticatedOnce: userAuthenticatedOnce
         }
     }
 })();
