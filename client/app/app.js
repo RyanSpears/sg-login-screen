@@ -130,12 +130,12 @@ app.run([
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams) {
 //                console.log('State Changed Start toState: ' + toState.name + ', toParams: ' + toParams.title + ', fromState:' + fromState.name);
-                authoriseCashier(event, toState, toParams, fromState, fromParams, userservice);
+                authoriseCashier(event, toState, toParams, fromState, fromParams, userservice, $state);
             });
     }
 ]);
 
-function authoriseCashier(event, toState, toParams, fromState, fromParams, userservice) {
+function authoriseCashier(event, toState, toParams, fromState, fromParams, userservice, $state) {
 
     // state need to contain cashier to continue
     if (toState.name.toLowerCase().indexOf("cashier") === -1) {
