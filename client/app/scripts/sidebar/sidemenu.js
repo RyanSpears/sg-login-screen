@@ -12,7 +12,7 @@
 
         var vm = this;
 
-        vm.isCashier = isCashier();
+        vm.isCashier = isCashier;
         vm.openModal = openModal;
 
         activate();
@@ -22,11 +22,10 @@
         }
 
         function isCashier() {
-            console.log('sidemenu.userIsCashier = ' + userservice.isCashier());
             return userservice.isCashier();
         }
 
-         function openModal() {
+        function openModal() {
             var modalInstance = $modal.open({
                 templateUrl: '/client/app/scripts/auth/logincashier.html',
                 controllerAs: 'vm',
@@ -35,10 +34,20 @@
                 backdrop: 'static'
             });
 
-            modalInstance.result.then(function() {
+            modalInstance.result.then(function () {
                 console.log('Modal dismissed at ' + new Date());
             })
         }
+
+        $scope.$on('user:cashier', function () {
+            console.log('received user:cashier broadcast');
+            isCashier();
+        });
+
+        $scope.$on('user:other', function () {
+            console.log('received user:other broadcast');
+            isCashier();
+        });
 
 
         return vm;

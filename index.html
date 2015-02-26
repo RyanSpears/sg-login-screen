@@ -29,12 +29,17 @@
 
 <body ng-app="app">
     <div ng-include="'/client/app/views/header.html'"></div>
-    <div class="container-fluid">
+    <div class="container">
         <div ng-include="'/client/app/scripts/sidebar/sidemenu.html'"></div>
         <div class="col-md-10 col-md-offset-2 main" ng-controller="security as vm">
             <div ui-view=""></div>
         </div>
     </div>
+    <footer class="footer">
+        <div class="container">
+            <div ng-include="'/client/app/views/footer.html'" ng-controller="footer as vm"></div>
+        </div>
+    </footer>
 </body>
 
 </html>

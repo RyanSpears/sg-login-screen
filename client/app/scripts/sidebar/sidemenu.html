@@ -1,6 +1,6 @@
 <div class="row" ng-controller="sidemenu as vm">
     <!--   Help Desk-->
-    <div class="col-md-2 sidebar" ng-show="vm.isHelpDesk">
+    <div class="col-md-2 sidebar" ng-show="!vm.isCashier()">
         <ul class="nav nav-sidebar">
             <li><a href="#">Dashboard</a></li>
         </ul>
@@ -15,7 +15,7 @@
         </ul>
     </div>
     <!-- Cashier -->
-    <div class="col-md-2 sidebar" ng-show="vm.isCashier">
+    <div class="col-md-2 sidebar" ng-show="vm.isCashier()">
         <ul class="nav nav-sidebar">
             <li><a ui-sref="cashier({title: 'Dashboard'})">Dashboard</a></li>
         </ul>

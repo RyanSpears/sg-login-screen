@@ -3,15 +3,13 @@
 
     var serviceId = 'userservice';
 
-    alertservice.$inject = ['$modal', '$q']
+    alertservice.$inject = ['$modal', '$q', '$rootScope']
 
     angular.module('app').factory(serviceId, alertservice);
 
-    function alertservice($modal, $q) {
+    function alertservice($modal, $q, $rootScope) {
 
         console.log('userservice');
-
-        var user = null;
         var users = [
             {
                 userName: 'Ryan Spears',
@@ -31,28 +29,43 @@
             }
         ];
 
+        var user = null;
         var loggedIn = false;
         var cashierAuthenticated = false;
         var authenticatedState = '';
         var stateAuthorisedForCashier = stateAuthorisedForCashier;
-        var cashierAllowedStates = ['Dashboard','Participating Venues'];
+        var cashierAllowedStates = ['Dashboard', 'Participating Venues'];
+        var cashierUserSetFromUrl = false;
+        var setCashierFromUrl = setCashierFromUrl;
 
         function getUser() {
             return user;
         };
 
         function isCashier() {
-            return user === null && !loggedIn;
+            return user === null && !loggedIn && cashierUserSetFromUrl;
+        }
+
+        function setCashierFromUrl(val) {
+            cashierUserSetFromUrl = val
+            if (val) {
+                $rootScope.$broadcast('user:cashier');
+            } else {
+                $rootScope.$broadcast('user:other');
+            }
         }
 
         function authenticateCashier(operatorNumber, passcode) {
-            var user = _.findWhere(users, { operatorNumber: Number(operatorNumber), passcode: passcode});
+            var user = _.findWhere(users, {
+                operatorNumber: Number(operatorNumber),
+                passcode: passcode
+            });
 
             return user || null;
         };
 
         function openCashierLogin() {
-             var deferred = $q.defer();
+            var deferred = $q.defer();
 
             var modalInstance = $modal.open({
                 templateUrl: '/client/app/scripts/auth/logincashier.html',
@@ -68,7 +81,7 @@
                 cashierAuthenticated = authenticated;
                 console.log('Modal submitted at ' + new Date() + ' with a value of ' + cashierAuthenticated);
                 deferred.resolve(cashierAuthenticated);
-            }, function() {
+            }, function () {
                 deferred.reject('Error getting authentication!');
             });
 
@@ -86,7 +99,8 @@
             openCashierLogin: openCashierLogin,
             cashierAuthenticated: cashierAuthenticated,
             authenticatedState: authenticatedState,
-            stateAuthorisedForCashier: stateAuthorisedForCashier
+            stateAuthorisedForCashier: stateAuthorisedForCashier,
+            setCashierFromUrl: setCashierFromUrl
         }
     }
 })();

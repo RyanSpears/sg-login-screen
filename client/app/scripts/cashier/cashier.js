@@ -6,9 +6,9 @@
 
     angular.module('app').controller(controllerId, cashier);
 
-    cashier.$inject = ['$scope', '$state', '$stateParams', 'userservice'];
+    cashier.$inject = ['$rootScope', '$scope', '$state', '$stateParams', 'userservice'];
 
-    function cashier($scope, $state, $stateParams, userservice) {
+    function cashier($rootScope, $scope, $state, $stateParams, userservice) {
 
         var vm = this;
 
@@ -20,6 +20,13 @@
         function activate() {
             vm.user = userservice.getUser();
         }
+
+        $scope.$on('user:cashier', function () {
+            console.log('received user:cashier broadcast');
+            $state.transitionTo('cashier', {
+                title: 'Dashboard'
+            });
+        });
 
         return vm;
     }
