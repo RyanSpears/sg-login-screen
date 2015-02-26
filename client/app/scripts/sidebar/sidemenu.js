@@ -12,7 +12,8 @@
 
         var vm = this;
 
-        vm.isCashier = isCashier;
+        vm.isCashier = isCashier();
+        vm.openModal = openModal;
 
         activate();
 
@@ -21,9 +22,24 @@
         }
 
         function isCashier() {
-            console.log('sidemenu.userIsCashier' + userservice.isCashier());
+            console.log('sidemenu.userIsCashier = ' + userservice.isCashier());
             return userservice.isCashier();
         }
+
+         function openModal() {
+            var modalInstance = $modal.open({
+                templateUrl: '/client/app/scripts/auth/logincashier.html',
+                controllerAs: 'vm',
+                controller: 'logincashier',
+                resolve: {},
+                backdrop: 'static'
+            });
+
+            modalInstance.result.then(function() {
+                console.log('Modal dismissed at ' + new Date());
+            })
+        }
+
 
         return vm;
     }

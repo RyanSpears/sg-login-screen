@@ -9,19 +9,17 @@ app.directive('cashierLogin', function (userservice) {
         scope: {
             initialCollapsed: '@collapsed'
         },
-        //        controllerAs: 'vm',
-        //        bindToController: true,
+        controllerAs: 'vm',
+        bindToController: true,
         controller: function ($scope, userservice) {
-            $scope.title = 'Some title'
-            $scope.loggedIn = true;
+            this.title = 'Some title'
+            this.loggedIn = true;
 
-            $scope.user = userservice.getUser();
+            this.user = userservice.getUser();
 
-            if ($scope.user == null) {
-                $scope.user = new User('Not logged in');;
+            if (this.user == null) {
+                this.user = new User('Not logged in');;
             }
-
-            console.log($scope.user.userName);
         }
     };
 });

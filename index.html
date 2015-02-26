@@ -4,20 +4,24 @@
 <head>
     <link href="/client/app/styles/bootstrap.css" rel="stylesheet" />
     <link href="/client/app/styles/bootstrap.css.map" rel="stylesheet" />
+    <link href="/client/app/styles/font-awesome.css" rel="stylesheet" />
+    <link href="/client/app/styles/font-awesome.css.map" rel="stylesheet" />
     <link href="/client/app/styles/main.css" rel="stylesheet" />
     <link href="/client/app/styles/angular-ui.css" rel="stylesheet" />
 
     <script src="/client/app/scripts/lib/jquery.js"></script>
     <script src="/client/app/scripts/lib/angular.js"></script>
     <script src="/client/app/scripts/lib/angular-ui.js"></script>
+    <script src="/client/app/scripts/lib/ui-bootstrap-tpls.js"></script>
     <script src="/client/app/scripts/lib/angular-ui-router.js"></script>
     <script src="/client/app/scripts/lib/underscore.js"></script>
     <script src="/client/app/scripts/lib/bootstrap.js"></script>
 
-    <script src="/client/data.js"></script>
     <script src="/client/app/app.js"></script>
     <script src="/client/app/scripts/services/userservice.js"></script>
     <script src="/client/app/scripts/auth/logincashierDir.js"></script>
+    <script src="/client/app/scripts/auth/logincashier.js"></script>
+    <script src="/client/app/scripts/cashier/cashier.js"></script>
     <script src="/client/app/scripts/auth/security.js"></script>
     <script src="/client/app/scripts/sidebar/sidemenu.js"></script>
     <script src="/client/models/User.js"></script>
@@ -29,7 +33,7 @@
         <div ng-include="'/client/app/scripts/sidebar/sidemenu.html'"></div>
         <div class="col-md-10 col-md-offset-2 main" ng-controller="security as vm">
             <div ui-view=""></div>
-            <cashier-login></cashier-login>
+            <button class="btn btn-primary" ng-click="vm.openModal()">Open Modal</button>
         </div>
     </div>
 </body>

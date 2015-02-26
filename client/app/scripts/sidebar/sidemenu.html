@@ -2,47 +2,37 @@
     <!--   Help Desk-->
     <div class="col-md-2 sidebar" ng-show="vm.isHelpDesk">
         <ul class="nav nav-sidebar">
-            <li><a href="#">Dashboard</a>
-            </li>
+            <li><a href="#">Dashboard</a></li>
         </ul>
         <ul class="nav nav-sidebar">
-            <li><a href="#">Hotels</a>
-            </li>
+            <li><a href="#">Hotels</a></li>
         </ul>
         <ul class="nav nav-sidebar">
-            <li><a href="#">Alerts</a>
-            </li>
+            <li><a href="#">Alerts</a></li>
         </ul>
         <ul class="nav nav-sidebar">
-            <li><a href="#">Admin</a>
-            </li>
+            <li><a href="#">Admin</a></li>
         </ul>
     </div>
-    <!-- Cahier -->
-    <div class="col-md-2 sidebar" ng-show="vm.isCashier()">
+    <!-- Cashier -->
+    <div class="col-md-2 sidebar" ng-show="vm.isCashier">
         <ul class="nav nav-sidebar">
-            <li><a href="#">Dashboard</a>
-            </li>
+            <li><a ui-sref="cashier({title: 'Dashboard'})">Dashboard</a></li>
         </ul>
         <ul class="nav nav-sidebar">
-            <li><a href="#">Redeem</a>
-            </li>
+            <li><a ui-sref="cashier.redeem({title: 'Redeem'})">Redeem    <i class="fa fa-lock"></i></a></li>
         </ul>
         <ul class="nav nav-sidebar">
-            <li><a href="#">Customer Admin</a>
-            </li>
+            <li><a ui-sref="cashier.customeradmin({title: 'Customer Admin'})">Customer Admin    <i class="fa fa-lock"></i></a></li>
         </ul>
         <ul class="nav nav-sidebar">
-            <li><a href="#">Locking Cards</a>
-            </li>
+            <li><a ui-sref="cashier.lockingcards({title: 'Locking Cards'})">Locking Cards    <i class="fa fa-lock"></i></a></li>
         </ul>
         <ul class="nav nav-sidebar">
-            <li><a href="#">Card Traces</a>
-            </li>
+            <li><a ui-sref="cashier.cardtraces({title: 'Card Traces'})">Card Traces    <i class="fa fa-lock"></i></a></li>
         </ul>
         <ul class="nav nav-sidebar">
-            <li><a href="#">Participating Venues</a>
-            </li>
+            <li><a ui-sref="cashier.participatingvenues({title: 'Participating Venues'})">Participating Venues</a></li>
         </ul>
     </div>
 </div>
