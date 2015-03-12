@@ -44,6 +44,16 @@
             return user;
         };
 
+        function getUsers() {
+            var promise = $q(function (resolve, reject) {
+                if(users){
+                    resolve(users);
+                } else {
+                    reject('No users');
+                }
+            });
+            return promise;
+        }
 
         function isCashier() {
             return user === null && !loggedIn && cashierUserSetFromUrl;
@@ -73,7 +83,7 @@
                 password: password
             });
 
-            if(user !== null) {
+            if (user !== null) {
                 userAuthenticatedOnce = true;
             }
 
@@ -134,6 +144,7 @@
 
         return {
             getUser: getUser,
+            getUsers: getUsers,
             authenticateCashier: authenticateCashier,
             isCashier: isCashier,
             openCashierLogin: openCashierLogin,

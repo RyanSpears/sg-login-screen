@@ -2,15 +2,19 @@
 
     'use strict';
 
+    console.log('loginuser outer this ' + this);
+
     var controllerId = "loginuser";
 
     angular.module('app').controller(controllerId, loginuser);
 
-    loginuser.$inject = ['$scope', '$window', '$modalInstance', 'userservice'];
+    loginuser.$inject = ['$scope', '$modalInstance', 'userservice'];
 
-    function loginuser($scope, $window, $modalInstance, userservice, userAuthenticated) {
+    function loginuser($scope, $modalInstance, userservice, userAuthenticated) {
 
         var vm = this;
+
+        console.log('loginuser ' + vm);
 
         vm.isCashier = isCashier;
         vm.user = null;
